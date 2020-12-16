@@ -162,13 +162,13 @@ public class S3Upload extends DefaultTask {
                 if (util.getS3Client().doesObjectExist(getBucket(), getKey())) {
                     if (isOverwrite()) {
                         getLogger().lifecycle(getName() + ":" + getFile() + " → s3://" + getBucket() + "/" + getKey() + " with overwrite");
-                        util.getS3Client().putObject(bucket, key, uploadFile);
+                        util.getS3Client().putObject(getBucket(), getKey(), uploadFile);
                     } else {
                         getLogger().warn("s3://" + getBucket() + "/" + getKey() + " exists, not overwriting");
                     }
                 } else {
                     getLogger().lifecycle(getName() + ":" + getFile() + " → s3://" + getBucket() + "/" + getKey());
-                    util.getS3Client().putObject(bucket, key, uploadFile);
+                    util.getS3Client().putObject(getBucket(), getKey(), uploadFile);
                 }
             } else {
                 getLogger().lifecycle(getName() + ":" + getFile() + " → s3://" + getBucket() + "/" + getKey());
